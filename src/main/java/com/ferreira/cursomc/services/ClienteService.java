@@ -4,8 +4,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.ferreira.cursomc.domain.Categoria;
 import com.ferreira.cursomc.domain.Cliente;
 import com.ferreira.cursomc.repositories.ClienteRepository;
 import com.ferreira.cursomc.services.exceptions.ObjectNotFoundException;
