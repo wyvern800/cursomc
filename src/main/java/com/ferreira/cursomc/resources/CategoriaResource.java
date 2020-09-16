@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ferreira.cursomc.domain.Categoria;
 
 @RestController
-@RequestMapping(value="/categorias") // endpoint
+@RequestMapping(value="/categorias") // end point
 public class CategoriaResource {
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public List<Categoria> listar( ) {
+	public List<Categoria> listar() {
 		Categoria cat1 = new Categoria(1, "Informática");
 		Categoria cat2 = new Categoria(2, "Escritório");
 		
