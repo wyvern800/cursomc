@@ -1,7 +1,10 @@
 package com.ferreira.cursomc.resources;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import com.ferreira.cursomc.dto.CategoriaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -55,11 +58,25 @@ public class CategoriaResource {
 	/**
 	 * Deleta uma categoria através da variável ID
 	 * @param id The id
-	 * @return
+	 * @return The response
 	 */
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
+	}
+
+
+	/**
+	 * Retorna todas as categorias
+	 * @return Lista das categorias
+	 */
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<List<CategoriaDTO>> findAll() {
+		List<Categoria> list = service.findAll();
+
+		// Mapeia todos os objetos em um objeto DTO coletando apenas o ID/Nome, sem produtos
+		List<CategoriaDTO> listDto = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);
 	}
 }
