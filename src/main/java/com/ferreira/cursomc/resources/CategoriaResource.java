@@ -14,6 +14,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.ferreira.cursomc.domain.Categoria;
 import com.ferreira.cursomc.services.CategoriaService;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(value="/categorias") // end point
 public class CategoriaResource {
@@ -38,7 +40,8 @@ public class CategoriaResource {
 	 * @return Uma resposta
 	 */
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody Categoria obj) {
+	public ResponseEntity<Void> insert(@Valid @RequestBody CategoriaDTO objDto) {
+		Categoria obj = service.fromDTO(objDto);
 		obj = service.inserir(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 					.path("/{id}").buildAndExpand(obj.getId()).toUri();
