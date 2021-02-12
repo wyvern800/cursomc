@@ -1,6 +1,9 @@
 package com.ferreira.cursomc.dto;
 
 import com.ferreira.cursomc.domain.Categoria;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -13,6 +16,8 @@ import java.io.Serializable;
  * @created 10/02/2021 - 16:11
  * @project cursomc
  */
+@Data
+@NoArgsConstructor
 public class CategoriaDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -22,28 +27,8 @@ public class CategoriaDTO implements Serializable {
     @Size(min=5, max=80, message="O tamanho deve ser entre 5 e 80 caracteres")
     private String nome;
 
-    public CategoriaDTO() {
-
-    }
-
     public CategoriaDTO(Categoria obj) {
         id = obj.getId();
         nome = obj.getNome();
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 }
